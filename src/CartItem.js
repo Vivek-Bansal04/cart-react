@@ -1,17 +1,7 @@
 import React from 'react';
 
 class CartItem extends React.Component {
-    constructor () {
-        super();
-        this.state = {
-            price: 999,
-            title: 'Phone',
-            qty: 1,
-            img: ''
-        }
-       // this.increaseQuantity = this.increaseQuantity.bind(this);
-          //bind unless value of this will be lost
-    }
+    
     //arrow function automatically bind this to instance of class so no need of separately writing bind
     increaseQuantity = () => {
         //console.log('this', this.state);
@@ -43,7 +33,7 @@ class CartItem extends React.Component {
     
     render () {
         //object destructuring we are getting qty by normal js and others by different method
-        const {price,title} = this.state;
+        const {price,title,qty} = this.props.product;
         return (
             <div className="cart-item">
                 <div className="left-block">
@@ -52,7 +42,7 @@ class CartItem extends React.Component {
                 <div className="right-block">
                     <div style={{ fontSize: 25 }}>{title}</div>
                     <div style={{ color: '#777' }}>Rs {price}</div>
-                    <div style={{ color: '#777' }}>Qty:{this.state.qty}</div>
+                    <div style={{ color: '#777' }}>Qty:{qty}</div>
                     <div className="cart-item-actions">
                        {/* Buttons */}
                        <img alt="increase" className="action-icons"

@@ -14,7 +14,31 @@ class CartItem extends React.Component {
     }
     //arrow function automatically bind this to instance of class so no need of separately writing bind
     increaseQuantity = () => {
-        console.log('this', this.state);
+        //console.log('this', this.state);
+        //setstate form 1
+        //when previous state is not required
+        /*this.setState({
+            qty: this.state.qty + 1
+        });*/
+        //setState form 2
+        //when previous state is required use this
+        this.setState((prevState) => {
+            return {
+                qty: prevState.qty + 1
+            }
+        });
+    }
+    decreaseQuantity = () => {
+        const{qty} = this.state;
+        if(qty===0)
+        {
+            return;
+        }
+        this.setState((prevState) => {
+            return {
+                qty:prevState.qty - 1
+            }
+        });
     }
     
     render () {
@@ -37,7 +61,9 @@ class CartItem extends React.Component {
                       
                         />
                        <img alt="decrease" className="action-icons"
-                        src="https://as1.ftcdn.net/jpg/03/73/49/86/500_F_373498649_nBxauQ0ipBSVrVcMpWWVmTpXu3BLvRyY.jpg" />
+                        src="https://as1.ftcdn.net/jpg/03/73/49/86/500_F_373498649_nBxauQ0ipBSVrVcMpWWVmTpXu3BLvRyY.jpg"
+                        onClick={this.decreaseQuantity}
+                        />
                        <img alt="delete" className="action-icons" 
                        src="https://as2.ftcdn.net/jpg/01/90/89/15/500_F_190891550_N7uKp2aHE3mOc20dmtDytj7atgvbhdOu.jpg" />
                     </div>
